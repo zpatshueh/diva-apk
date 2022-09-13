@@ -15,45 +15,6 @@ on:
     branches: [master]
     
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-java@v3
-      with:
-        distribution: temurin
-        java-version: 11
-        
-    - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2
-      with:
-        gradle-version: 7.3.3
-    
-    - name: Execute Gradle build
-      run: ./gradlew build
-
-    - name: Get apk path
-      id: apk-path
-      run: |
-        path=$(find **/build/outputs/apk -name '*.apk' -type f | head -1)
-        echo "::set-output name=path::$path"
-        
-    - name: Get apk info
-      id: apk-info
-      uses: hkusu/apk-info-action@v1
-      with:
-        apk-path: ${{ steps.apk-path.outputs.path }}
-
-    - name: Move Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: my-artifact
-        path: ${{ steps.apk-path.outputs.path }}
-        if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
-  
   scan:
     strategy:
       matrix:
