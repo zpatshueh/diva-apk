@@ -29,9 +29,9 @@ jobs:
       timeout-minutes: 60
       with:
         # REPLACE: Zimperium Client Environment Name
-        client_env: ziap
+        client_env: mtddev
         # REPLACE: Zimperium Client ID
-        client_id: xtGeJrz6SF-LvcVJ6Mi5SQ
+        client_id: dF_o4EL5TGatrZDNHKGZHw
         # REPLACE: Zimperium Client Secret
         client_secret: ${{ secrets.ZSCAN_CLIENT_SECRET }}
         # REPLACE: The path to an .ipa or .apk
